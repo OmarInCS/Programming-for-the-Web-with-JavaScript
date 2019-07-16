@@ -3,7 +3,8 @@ class FontChooser extends React.Component {
 
     constructor(props) {
 	super(props);
-	this.state = {hidden: true, isBold: this.props.bold, size: this.props.size};
+	this.state = {hidden: true, isBold: this.props.bold, 
+					size: this.props.size, color: "black"};
     }
 
     toggleFontChooser() {
@@ -13,7 +14,26 @@ class FontChooser extends React.Component {
     toggleBold() {
     	this.setState({isBold : !this.state.isBold});
     }
+
+    increaseFontSize(){
+    	var size = parseInt(this.state.size) + 1;
+    	if(size < parseInt(this.prop.max)){
+    		this.setState({size: size, color: "black"});
+    	}
+    	else if(size == parseInt(this.prop.max)){
+    		this.setState({size: size, color: "red"});
+    	}
+    }
     
+    decreaseFontSize(){
+    	var size = parseInt(this.state.size) - 1;
+    	if(size > parseInt(this.prop.min)){
+    		this.setState({size: size, color: "black"});
+    	}
+    	else if(size == parseInt(this.prop.min)){
+    		this.setState({size: size, color: "red"});
+    	}
+    }
 
     render() {
 
@@ -24,11 +44,13 @@ class FontChooser extends React.Component {
 		       <input type="checkbox" id="boldCheckbox" 
 		       		hidden={this.state.hidden} {this.state.isBold? "checked" : ""}
 		       		onChange={this.toggleBold.bind(this)}>
-		       <button id="decreaseButton" hidden={this.state.hidden}>-</button>
+		       <button id="decreaseButton" hidden={this.state.hidden} 
+		       			onClick={this.decreaseFontSize.bind(this)}>-</button>
 		       <span id="fontSizeSpan" hidden={this.state.hidden}>{this.props.size}</span>
-		       <button id="increaseButton" hidden={this.state.hidden}>+</button>
+		       <button id="increaseButton" hidden={this.state.hidden} 
+		       			onClick={this.increaseFontSize.bind(this)}>+</button>
 		       <span id="textSpan" onClick={this.toggleFontChooser.bind(this)} 
-		       	style={{fontWeight: bold, fontSize: this.state.size +"px"}}>
+		       	style={{fontWeight: bold, fontSize: this.state.size +"px", color: this.state.color}}>
 		       		{this.props.text}
 		       </span>
 		       </div>
