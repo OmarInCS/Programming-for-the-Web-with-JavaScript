@@ -17,20 +17,20 @@ class FontChooser extends React.Component {
 
     increaseFontSize(){
     	var size = parseInt(this.state.size) + 1;
-    	if(size < parseInt(this.prop.max)){
+    	if(size < parseInt(this.props.max)){
     		this.setState({size: size, color: "black"});
     	}
-    	else if(size == parseInt(this.prop.max)){
+    	else if(size == parseInt(this.props.max)){
     		this.setState({size: size, color: "red"});
     	}
     }
     
     decreaseFontSize(){
     	var size = parseInt(this.state.size) - 1;
-    	if(size > parseInt(this.prop.min)){
+    	if(size > parseInt(this.props.min)){
     		this.setState({size: size, color: "black"});
     	}
-    	else if(size == parseInt(this.prop.min)){
+    	else if(size == parseInt(this.props.min)){
     		this.setState({size: size, color: "red"});
     	}
     }
