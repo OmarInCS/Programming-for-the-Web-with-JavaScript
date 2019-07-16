@@ -22,7 +22,7 @@ class FontChooser extends React.Component {
 		return(
 		       <div>
 		       <input type="checkbox" id="boldCheckbox" 
-		       		hidden={this.state.hidden} {this.state.isBold? "checked" : ""
+		       		hidden={this.state.hidden} {this.state.isBold? "checked" : ""}
 		       		onChange={this.toggleBold.bind(this)}>
 		       <button id="decreaseButton" hidden={this.state.hidden}>-</button>
 		       <span id="fontSizeSpan" hidden={this.state.hidden}>{this.props.size}</span>
