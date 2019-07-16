@@ -40,25 +40,25 @@ class FontChooser extends React.Component {
 		var bold = this.state.isBold? 'bold' : 'normal';
 
 		return(
-		       <div>
-			       <input type="checkbox" id="boldCheckbox" 
-			       		hidden={this.state.hidden}
-			       		onChange={this.toggleBold.bind(this)}>
-			       
-			       <button id="decreaseButton" hidden={this.state.hidden} 
-			       			onClick={this.decreaseFontSize.bind(this)}>-</button>
-			       
-			       <span id="fontSizeSpan" hidden={this.state.hidden}>{this.props.size}</span>
-			       
-			       <button id="increaseButton" hidden={this.state.hidden} 
-			       			onClick={this.increaseFontSize.bind(this)}>+</button>
-			       
-			       <span id="textSpan" onClick={this.toggleFontChooser.bind(this)} 
-			       	style={{fontWeight: bold, fontSize: this.state.size +"px", color: this.state.color}}>
-			       		{this.props.text}
-			       </span>
+	       <div>
+		       <input type="checkbox" id="boldCheckbox" 
+		       		hidden={this.state.hidden} defaultChecked={this.state.isBold}
+		       		onChange={this.toggleBold.bind(this)}/>
 		       
-		       </div>
+		        <button id="decreaseButton" hidden={this.state.hidden} 
+		        			onClick={this.decreaseFontSize.bind(this)}>-</button>
+		       
+		       <span id="fontSizeSpan" hidden={this.state.hidden}>{this.state.size}</span>
+		       
+		       <button id="increaseButton" hidden={this.state.hidden} 
+		       			onClick={this.increaseFontSize.bind(this)}>+</button>
+		       
+		       <span id="textSpan" onClick={this.toggleFontChooser.bind(this)} 
+		       	 style={{fontWeight: bold, fontSize: this.state.size +"px", color: this.state.color}}>
+		       		{this.props.text}
+		       </span>
+	       
+	       </div>
 		);
     }
 }
