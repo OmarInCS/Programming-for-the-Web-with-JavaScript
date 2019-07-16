@@ -3,8 +3,9 @@ class FontChooser extends React.Component {
 
     constructor(props) {
 	super(props);
-	this.state = {hidden: true, isBold: this.props.bold, 
-					size: this.props.size, color: "black"};
+	this.state = {hidden: true, isBold: this.props.bold == "true", 
+					size: this.props.size, color: "black",
+					max: this.props.max, min: this.props.min};
     }
 
     toggleFontChooser() {
@@ -17,20 +18,20 @@ class FontChooser extends React.Component {
 
     increaseFontSize(){
     	var size = parseInt(this.state.size) + 1;
-    	if(size < parseInt(this.props.max)){
+    	if(size < parseInt(this.state.max)){
     		this.setState({size: size, color: "black"});
     	}
-    	else if(size == parseInt(this.props.max)){
+    	else if(size == parseInt(this.state.max)){
     		this.setState({size: size, color: "red"});
     	}
     }
     
     decreaseFontSize(){
     	var size = parseInt(this.state.size) - 1;
-    	if(size > parseInt(this.props.min)){
+    	if(size > parseInt(this.state.min)){
     		this.setState({size: size, color: "black"});
     	}
-    	else if(size == parseInt(this.props.min)){
+    	else if(size == parseInt(this.state.min)){
     		this.setState({size: size, color: "red"});
     	}
     }
