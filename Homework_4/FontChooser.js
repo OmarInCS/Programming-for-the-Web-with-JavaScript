@@ -63,7 +63,7 @@ class FontChooser extends React.Component {
 		        			onClick={this.decreaseFontSize.bind(this)}>-</button>
 		       
 		       <span id="fontSizeSpan" hidden={this.state.hidden} 
-		       			onDoubleClick={this.restoreOriginalSize}>
+		       			onDoubleClick={this.restoreOriginalSize.bind(this)}>
 		       		{this.state.size}
 		       </span>
 		       
