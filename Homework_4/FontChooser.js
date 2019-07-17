@@ -2,10 +2,16 @@
 class FontChooser extends React.Component {
 
     constructor(props) {
-	super(props);
-	this.state = {hidden: true, isBold: this.props.bold == "true", 
-					size: this.props.size, color: "black",
-					max: this.props.max, min: this.props.min};
+		super(props);
+		this.props.min = Math.max(this.props.min, 1);
+		if(this.props.min > this.props.max) {
+			this.props.min = this.props.max = Math.max(this.props.max, this.props.min);
+		}
+		this.props.size = Math.max(this.props.size, this.props.min);
+		this.props.size = Math.min(this.props.size, this.props.max);
+		this.state = {hidden: true, isBold: this.props.bold == "true", 
+						size: this.props.size, color: "black",
+						max: this.props.max, min: this.props.min};
     }
 
     toggleFontChooser() {
@@ -36,6 +42,10 @@ class FontChooser extends React.Component {
     	}
     }
 
+    restoreOriginalSize(){
+    	this.setState({size: this.props.size})
+    }
+
     render() {
 
 		var bold = this.state.isBold? 'bold' : 'normal';
@@ -49,7 +59,10 @@ class FontChooser extends React.Component {
 		        <button id="decreaseButton" hidden={this.state.hidden} 
 		        			onClick={this.decreaseFontSize.bind(this)}>-</button>
 		       
-		       <span id="fontSizeSpan" hidden={this.state.hidden}>{this.state.size}</span>
+		       <span id="fontSizeSpan" hidden={this.state.hidden} 
+		       			onDoubleClick={this.restoreOriginalSize}>
+		       		{this.state.size}
+		       </span>
 		       
 		       <button id="increaseButton" hidden={this.state.hidden} 
 		       			onClick={this.increaseFontSize.bind(this)}>+</button>
