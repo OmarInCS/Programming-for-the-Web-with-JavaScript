@@ -3,15 +3,18 @@ class FontChooser extends React.Component {
 
     constructor(props) {
 		super(props);
-		this.props.min = Math.max(this.props.min, 1);
-		if(this.props.min > this.props.max) {
-			this.props.min = this.props.max = Math.max(this.props.max, this.props.min);
+		var min = this.props.min;
+		var max = this.props.max;
+		var size = this.props.size;
+		min = Math.max(min, 1);
+		if(min > max) {
+			min = max = Math.max(max, min);
 		}
-		this.props.size = Math.max(this.props.size, this.props.min);
-		this.props.size = Math.min(this.props.size, this.props.max);
+		size = Math.max(size, min);
+		size = Math.min(size, max);
 		this.state = {hidden: true, isBold: this.props.bold == "true", 
-						size: this.props.size, color: "black",
-						max: this.props.max, min: this.props.min};
+						size: size, color: "black",
+						max: max, min: min};
     }
 
     toggleFontChooser() {
